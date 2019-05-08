@@ -3,9 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { SigninPage } from './signin/signin.page';
 
 const routes: Routes = [
-  { path: 'signin', component: SigninPage, loadChildren: './tabs/tabs/tabs.module#TabsPageModule' },
-  { path: '', redirectTo: 'signin', pathMatch: 'full' }
-
+  { path: '', component: SigninPage },
+  { path: '', loadChildren: './tabs/tabs/tabs.module#TabsPageModule'}
 ];
 @NgModule({
   imports: [
