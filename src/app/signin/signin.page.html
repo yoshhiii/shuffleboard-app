@@ -8,9 +8,9 @@
       <img src="/assets/RiskyBs.png">
     </ion-card-header>
     <ion-card-content>
-      <ion-input placeholder="User Name"></ion-input>
-      <ion-input placeholder="Password"></ion-input>
-      <ion-button expand="full" fill="outline">Log In</ion-button>
+      <ion-input placeholder="Email" [(ngModel)]="username"></ion-input>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+      <ion-button expand="full" fill="outline" (click)="authService.login(username, password)">Log In</ion-button>
     </ion-card-content>
   </ion-card>
 

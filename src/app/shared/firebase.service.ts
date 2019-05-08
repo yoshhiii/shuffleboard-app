@@ -14,12 +14,11 @@ export class FirebaseService {
 
   constructor(private db: AngularFirestore) {}
 
-  addUser(user: Profile): Promise<string> {
+  addUser(user: Profile, authId: string): Promise<string> {
     return this.db.collection('users').add({
       name: user.name,
       email: user.email,
-      username: user.username,
-      password: user.password
+      id: authId
     })
     .then((docRef) => {
       return docRef.id;
@@ -44,6 +43,15 @@ export class FirebaseService {
       users: team.users
     });
   }
+
+  getUser(authId: string): Observable<Profile[]> {
+    return this.db.collection('users', (ref) => ref.where('authId', '==', authId)).valueChanges() as Observable<Profile[]>;
+  }
+
+  updateUser(name: string, id: string) {
+    
+  }
+
 
   getTeams(): Observable<TeamModel[]> {
     return (this.db.collection('teams', ref => ref.orderBy('elo', 'desc')).valueChanges() as Observable<TeamModel[]>);
