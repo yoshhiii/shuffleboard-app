@@ -8,42 +8,51 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'score',
         children: [
           {
             path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule'
+            loadChildren: '../score/score.module#Tab1PageModule'
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'match',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../match/match.module#Tab2PageModule'
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'leaderboard',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../leaderboard/leaderboard.module#Tab3PageModule'
+          }
+        ]
+      },
+      {
+        path: 'team',
+        children: [
+          {
+            path: '',
+            loadChildren: '../team/team.module#Tab3PageModule'
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/score',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/score',
     pathMatch: 'full'
   }
 ];
