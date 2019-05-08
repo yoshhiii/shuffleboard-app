@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Profile
+      <ion-icon name="person" class="profile-icon" routerLink="/profile"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-img src="/assets/shapes.svg"></ion-img>
+    <ion-card-header>
+      <ion-card-title>Create Account</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input placeholder="Name" [(ngModel)]="model.name" required="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Email" [(ngModel)]="model.email" required="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Username" [(ngModel)]="model.username" required="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="model.password" required="true"></ion-input>
+      </ion-item>
+      <ion-button color="primary" expand="full" (click)="submitForm()">Submit</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
