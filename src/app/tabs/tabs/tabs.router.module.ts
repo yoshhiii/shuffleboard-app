@@ -8,11 +8,11 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'scores',
+        path: 'score',
         children: [
           {
             path: '',
-            loadChildren: '../scores/score.module#Tab1PageModule'
+            loadChildren: '../score/score.module#Tab1PageModule'
           }
         ]
       },
