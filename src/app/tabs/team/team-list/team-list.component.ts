@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TeamCreateComponent } from '../team-create/team-create.component';
 import { OverlayEventDetail } from '@ionic/core';
+import { FirebaseService } from 'src/app/shared/firebase.service';
 
 @Component({
   selector: 'app-team-list',
@@ -10,19 +11,13 @@ import { OverlayEventDetail } from '@ionic/core';
 })
 export class TeamListComponent implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  constructor(public modalController: ModalController) {}
 
   ngOnInit() {}
 
   async openModal() {
     const modal = await this.modalController.create({
       component: TeamCreateComponent,
-    });
-
-    modal.onDidDismiss().then((detail: OverlayEventDetail) => {
-      if (detail !== null) {
-        console.log('The result:', detail.data);
-      }
     });
 
     return await modal.present();
