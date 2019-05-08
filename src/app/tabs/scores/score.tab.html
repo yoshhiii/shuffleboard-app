@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Scores
+      <ion-icon name="person" class="profile-icon" routerLink="/profile"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-card>
+    <ion-card-content>
+      <div>
+        <div class="d-flex">
+          <div class="d-flex flex-column  flex-fill justify-content-start scorebox">
+            <div class="d-flex flex-row justify-content-between mr-2">
+              <div>{{scores.scores[0].team}}</div>
+              <div>{{scores.scores[0].score}}</div>
+            </div>
+            <div class="d-flex flex-row justify-content-between mr-2">
+              <div>{{scores.scores[1].team}}</div>
+              <div>{{scores.scores[1].score}}</div>
+            </div>
+          </div>
+          <div class="d-flex flex-column flex-fill align-items-center align-self-center schedule">
+            <span>{{scores.schedule | date: 'short'}}</span>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card> -->
+  <app-scorebox *ngFor="let score of scores" [scores]="score"></app-scorebox>
+</ion-content>
