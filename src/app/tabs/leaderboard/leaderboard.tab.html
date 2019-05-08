@@ -6,4 +6,52 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <div class="my-2">
+    <div class="d-flex justify-content-center mb-3">
+      <h2>Your Best Ranking</h2>
+    </div>
+    <div class="d-flex justify-content-around">
+      <div class="text-left">
+        <h4>Rank</h4>
+        <b>{{ myRank }}</b>
+      </div>
+      <h2>{{ myBestTeam?.name }}</h2>
+      <div class="text-right">
+        <h4>ELO</h4>
+        <b>{{ myBestTeam?.elo }}</b>
+      </div>
+    </div>
+  </div>
+  <ion-item-divider> </ion-item-divider>
+  <div class=" mt-2 d-flex justify-content-between mx-3">
+    <div class="text-left">
+      <span><b>Rank</b></span>
+    </div>
+    <span><b>Team</b></span>
+    <div class="text-right">
+      <span><b>ELO</b></span>
+    </div>
+  </div>
+  <ion-list>
+    <ion-card (click)="expand(team)" *ngFor="let i = index; let team of teams | async">
+      <ion-item>
+        <span slot="start"
+          ><b>{{ i + 1 }}.</b></span
+        >
+        <span class="mr-2">{{ team.name }}</span>
+        <ion-avatar class="mr-2" *ngFor="let user of team.users">
+          <img
+            src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+          />
+        </ion-avatar>
+        <span slot="end">
+          <b>{{ team.elo }}</b>
+          <ion-icon class="ml-3" name="arrow-dropdown"></ion-icon> 
+        </span>
+
+      </ion-item>
+      <div *ngIf=""></div>
+    </ion-card>
+  </ion-list>
+</ion-content>

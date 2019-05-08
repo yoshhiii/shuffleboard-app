@@ -5,6 +5,7 @@ import { User } from './models/user.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
 import { Team } from './models/team.model';
+import { TeamModel } from '../tabs/team/team.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,11 +38,19 @@ export class FirebaseService {
     ));
   }
 
-
   addTeam(team: Team) {
     return this.db.collection('teams').add({
       name: team.name,
       users: team.users
     });
+  }
+
+  getTeams(): Observable<TeamModel[]> {
+    return (this.db.collection('teams', ref => ref.orderBy('elo', 'desc')).valueChanges() as Observable<TeamModel[]>);
+  }
+
+  getMyTeam(userId: number): Observable<TeamModel[]> {
+    const ref = this.db.collection<TeamModel>('teams', (ref) => ref.where('users', 'array-contains', userId));
+    return ref.valueChanges().pipe(map(x => x.sort((a, b) => a.elo > b.elo ? a.elo : b.elo)));
   }
 }
