@@ -14,6 +14,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { IconsModule } from './shared/icons/icons.module';
 
+import { SigninPageModule } from './signin/signin.module';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,7 +25,8 @@ import { IconsModule } from './shared/icons/icons.module';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    IconsModule],
+    IconsModule,
+    SigninPageModule],
   providers: [
     StatusBar,
     SplashScreen,

@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { SigninPage } from './signin/signin.page';
 
 const routes: Routes = [
-  { path: '', loadChildren: './tabs/tabs/tabs.module#TabsPageModule' },  { path: 'signin', loadChildren: './signin/signin.module#SigninPageModule' }
+  { path: 'signin', component: SigninPage, loadChildren: './tabs/tabs/tabs.module#TabsPageModule' },
+  { path: '', redirectTo: 'signin', pathMatch: 'full' }
 
 ];
 @NgModule({
