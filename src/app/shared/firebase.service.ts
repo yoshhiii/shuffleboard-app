@@ -23,4 +23,8 @@ export class FirebaseService {
       console.error('Error adding document: ', error);
     });
   }
+
+  getUsers() {
+    return this.db.collection('users').valueChanges();
+  }
 }
