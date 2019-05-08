@@ -4,7 +4,8 @@ import { SigninPage } from './signin/signin.page';
 
 const routes: Routes = [
   { path: '', component: SigninPage },
-  { path: '', loadChildren: './tabs/tabs/tabs.module#TabsPageModule'}
+  { path: '', loadChildren: './tabs/tabs/tabs.module#TabsPageModule' },
+  { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
 ];
 @NgModule({
   imports: [

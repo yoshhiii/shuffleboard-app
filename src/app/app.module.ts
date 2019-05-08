@@ -13,6 +13,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { IconsModule } from './shared/icons/icons.module';
+import { ProfileModule } from './profile/profile.module';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { SigninPageModule } from './signin/signin.module';
 
@@ -22,6 +24,7 @@ import { SigninPageModule } from './signin/signin.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    ProfileModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
@@ -30,7 +33,8 @@ import { SigninPageModule } from './signin/signin.module';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })

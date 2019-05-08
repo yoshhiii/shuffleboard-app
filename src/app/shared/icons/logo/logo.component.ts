@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { EventManagerPlugin } from '@angular/platform-browser/src/dom/events/event_manager';
 
 @Component({
   selector: 'app-logo',
