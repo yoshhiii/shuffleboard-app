@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LogoComponent } from './logo/logo.component';
-import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { LogoIconComponent } from './logo/logo.component';
+import { ScoreboardIconComponent } from './scoreboard/scoreboard.component';
+import { LeaderboardIconComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
-    LogoComponent,
-    ScoreboardComponent
+    LogoIconComponent,
+    ScoreboardIconComponent,
+    LeaderboardIconComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    LogoComponent,
-    ScoreboardComponent
+    LogoIconComponent,
+    ScoreboardIconComponent,
+    LeaderboardIconComponent
   ]
 })
 export class IconsModule { }
