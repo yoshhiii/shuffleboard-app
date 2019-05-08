@@ -10,7 +10,7 @@ import { ProfileComponent } from './profile.component';
     IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: ProfileComponent }])
+    RouterModule.forChild([{ path: 'profile', component: ProfileComponent }])
   ],
   declarations: [ProfileComponent]
 })
