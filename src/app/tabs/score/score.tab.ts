@@ -23,8 +23,16 @@ export class ScoreTab implements OnInit {
       },
       {
         scores: [
-          { score: 4, team: 'test 3' },
-          { score: 0, team: 'test 3' }
+          { score: 4, team: 'test 3', winner: true },
+          { score: 0, team: 'test 4' }
+        ],
+        final: true,
+        schedule: new Date()
+      },
+      {
+        scores: [
+          { score: 15, team: 'ricky biscuits' },
+          { score: 21, team: 'cheese shiners', winner: true }
         ],
         final: true,
         schedule: new Date()
