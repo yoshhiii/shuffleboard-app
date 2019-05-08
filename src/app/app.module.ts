@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
+import { IconsModule } from './shared/icons/icons.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { environment } from '../environments/environment';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule],
+    AngularFireDatabaseModule,
+    IconsModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -29,4 +31,4 @@ import { environment } from '../environments/environment';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
