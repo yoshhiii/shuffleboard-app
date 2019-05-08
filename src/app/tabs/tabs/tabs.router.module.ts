@@ -42,18 +42,8 @@ const routes: Routes = [
             loadChildren: '../team/team.module#Tab4PageModule'
           }
         ]
-      },
-      {
-        path: '',
-        redirectTo: '/tabs/score',
-        pathMatch: 'full'
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/tabs/score',
-    pathMatch: 'full'
   }
 ];
 

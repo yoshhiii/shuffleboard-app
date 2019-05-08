@@ -16,6 +16,8 @@ import { IconsModule } from './shared/icons/icons.module';
 import { ProfileModule } from './profile/profile.module';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { SigninPageModule } from './signin/signin.module';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -26,7 +28,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    IconsModule],
+    IconsModule,
+    SigninPageModule],
   providers: [
     StatusBar,
     SplashScreen,
