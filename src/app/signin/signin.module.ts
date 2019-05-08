@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SigninPage } from './signin.page';
+import { IconsModule } from '../shared/icons/icons.module';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    IconsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SigninPage]
