@@ -14,4 +14,4 @@ import { TeamTab } from './team.tab';
   ],
   declarations: [TeamTab]
 })
-export class TeamTabModule {}
+export class Tab4PageModule {}

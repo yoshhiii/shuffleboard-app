@@ -39,7 +39,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../team/team.module#Tab3PageModule'
+            loadChildren: '../team/team.module#Tab4PageModule'
           }
         ]
       },
