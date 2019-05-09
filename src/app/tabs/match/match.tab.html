@@ -38,11 +38,11 @@
         <ion-button color="danger">Cancel</ion-button>
       </ion-col>
     </ion-row>
-    <ion-row class="new-match-row text-center">
-      <ion-col size="12">
-      <ion-button (click)="openModal()" expand="full" fill="outline">New Match</ion-button>
-      </ion-col>
-    </ion-row>
   </ion-grid>
+  <ion-fab class="mr-3" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="openModal()">
+        <ion-icon name="md-add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 </ion-content>
 
