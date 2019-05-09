@@ -38,8 +38,8 @@ export class TeamListComponent implements OnInit {
   }
 
   getTeams() {
-    const teamsObs = this.teamService.getTeams(this.userId);
-    const rankingsObs = this.leaderboardService.getTeamRecordByRuleset(1);
+    let teamsObs = this.teamService.getTeams(this.userId);
+    let rankingsObs = this.leaderboardService.getTeamRecordByRuleset(1);
 
     return forkJoin([teamsObs, rankingsObs])
       .pipe(map(([t, r]) => {

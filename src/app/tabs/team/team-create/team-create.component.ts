@@ -48,7 +48,7 @@ export class TeamCreateComponent implements OnInit {
       this.teamFinal.name = this.name;
       this.teamFinal.users.push(this.teammate);
       this.teamFinal.users.push(this.currentUser);
-      this.teamService.createTeam(this.teamFinal).subscribe();
+      this.teamService.createTeam(this.teamFinal).subscribe(x => x, (err) => console.log(err), () => { this.myDismiss() });
       this.myDismiss();
     }
   }
