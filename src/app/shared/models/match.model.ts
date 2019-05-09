@@ -9,5 +9,5 @@ export interface MatchModel {
   challengerScore: number;
   oppositionScore: number;
   matchDate: Date;
-  ruleset: RulesetModel;
+  rulesetId: number;
 }

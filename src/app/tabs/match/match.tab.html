@@ -10,26 +10,26 @@
   <ion-list>
     <ion-item>
       <ion-label>Team</ion-label>
-      <ion-select placeholder="Pick a team...">
+      <ion-select placeholder="Pick a team..." [(ngModel)]="selectedTeamName" (ionChange)="UpdateSelectedMatches()">
         <ion-select-option
-          *ngFor="let i = index; let team of teams | async"
+          *ngFor="let team of teams"
           >{{ team.name }}</ion-select-option
         >
       </ion-select>
     </ion-item>
   </ion-list>
 
-  <ion-slides class="match-slides" pager="true" [options]="slideOpts">
-    <ion-slide *ngFor="let i = index; let match of matches | async">
+  <ion-slides class="match-slides" pager="true" [options]="slideOpts" (ionSlideDidChange)="SlideChanged($event)">
+    <ion-slide *ngFor="let match of matches">
       <ion-card class="d-flex flex-column justify-content-center match-card">
-      <span class="match-card-text">{{ match.team1 }} has a match against {{ match.team2 }} on {{ match.date }} playing by {{ match.rules }} rules.</span>
+      <span class="match-card-text">{{ match.challengerName }} has a match against {{ match.oppositionName }} on {{ match.matchDate }} playing by {{ match.rulesetId }} rules.</span>
       </ion-card>
     </ion-slide>
   </ion-slides>
   <ion-grid>
     <ion-row class="text-center">
       <ion-col size="4">
-        <ion-button color="success">Outcome</ion-button>
+        <ion-button color="success" (click)="presentAlertPrompt()">Outcome</ion-button>
       </ion-col>
       <ion-col size="4">
         <ion-button color="tertiary">Edit Match</ion-button>

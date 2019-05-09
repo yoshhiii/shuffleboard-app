@@ -52,9 +52,11 @@ export class ManagematchesPage implements OnInit {
       Id: null,
       oppositionScore: null,
       challengerScore: null,
-      ruleset: selectedRules
+      rulesetId: selectedRules.id
     };
 
-    this.matchService.createMatch(match);
+    console.log(match);
+
+    this.matchService.createMatch(match).subscribe();
   }
 }

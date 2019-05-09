@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { MatchModel } from './models/match.model';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { ResultsModel } from './models/results.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,12 @@ export class MatchService {
     return this.http.get<MatchModel[]>(`${environment.apiUrl}/match`, {params});
   }
 
-  createMatch(match: MatchModel) {
-    return this.http.post(`${environment.apiUrl}/match`, match);
+  createMatch(match: MatchModel): Observable<MatchModel>  {
+    console.log('l');
+    return this.http.post<MatchModel>(`${environment.apiUrl}/match`, match);
+  }
+
+  completeMatch(matchId: number, result: ResultsModel) {
+    return this.http.put(`${environment.apiUrl}/match/${matchId.toString()}`, result);
   }
 }
