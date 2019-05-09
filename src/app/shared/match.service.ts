@@ -24,5 +24,7 @@ export class MatchService {
     return this.http.get<MatchModel[]>(`${environment.apiUrl}/match`, {params});
   }
 
-
+  createMatch(match: MatchModel) {
+    return this.http.post(`${environment.apiUrl}/match`, match);
+  }
 }
