@@ -1,7 +1,17 @@
-.logo-center {
-    display: block;
-    width: 25%;
-    margin: auto;
+.logo-inverted {
+    display: inline-block;
+    filter: invert(100);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+
+.ion-card-header {
+    float: clear;
 }
 
 .datepicker-carat {
