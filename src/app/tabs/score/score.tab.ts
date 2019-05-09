@@ -17,18 +17,18 @@ export class ScoreTab implements OnInit {
       x.map(m => {
         const score = new ScoresModel();
         score.scores = [{
-          team: m.challengerId.toString(),
+          team: m.challengerName,
           score: m.challengerScore,
           winner: m.challengerScore > m.oppositionScore
         }, {
-          team: m.oppositionId.toString(),
+          team: m.oppositionName,
           score: m.oppositionScore,
           winner: m.oppositionScore > m.challengerScore
         }];
         score.final = m.challengerScore !== null && m.oppositionScore !== null;
         score.schedule = m.matchDate,
         this.scores.push(score);
-      })
+      });
     });
   }
 }
