@@ -21,8 +21,8 @@ export class LeaderboardTab implements OnInit {
   ngOnInit(): void {
     forkJoin([this.teamsService.getTeams(), this.leaderboardService.getTeamRecordByRuleset(1)]).pipe( map(([teams, rankings]) => {
       if (teams.length > 0) {
-        return teams.map(team => {
-          const ranking = rankings.find(x => x.teamId === team.id);
+        return rankings.map(ranking => {
+          const team = teams.find(x => x.id === ranking.teamId);
           return{team, ranking};
         }).sort((a, b) => {
           return b.ranking.elo - a.ranking.elo;
