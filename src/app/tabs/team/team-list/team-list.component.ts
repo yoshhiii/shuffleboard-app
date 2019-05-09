@@ -19,15 +19,21 @@ export class TeamListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.teamService.getTeams(this.userId).subscribe(x => this.teams = x);
+    this.getTeams();
   }
 
   async openModal() {
     const modal = await this.modalController.create({
       component: TeamCreateComponent,
     });
+    modal.onDidDismiss()
+    .then(data => this.getTeams());
 
     return await modal.present();
+  }
+
+  getTeams() {
+    return this.teamService.getTeams(this.userId).subscribe(x => this.teams = x);
   }
 
 }

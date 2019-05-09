@@ -15,6 +15,6 @@
 
 <ion-fab class="mr-3" vertical="bottom" horizontal="end">
   <ion-fab-button>
-    <ion-icon (click)="openModal()" name="md-add"></ion-icon>
+    <ion-icon (click)="openModal()" (onDidDismiss)="getTeams()" name="md-add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
