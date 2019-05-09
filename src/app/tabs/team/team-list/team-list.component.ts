@@ -10,13 +10,16 @@ import { TeamModel } from 'src/app/shared/models/team.model';
   styleUrls: ['./team-list.component.scss'],
 })
 export class TeamListComponent implements OnInit {
-
   teams: TeamModel[];
-  constructor(public modalController: ModalController,
-    private teamService: TeamService) { }
+  userId = localStorage.getItem('userId');
 
-  ngOnInit() { 
-    this.teamService.getTeams().subscribe(x => this.teams = x);
+  constructor(
+    public modalController: ModalController,
+    private teamService: TeamService
+  ) { }
+
+  ngOnInit() {
+    this.teamService.getTeams(this.userId).subscribe(x => this.teams = x);
   }
 
   async openModal() {
