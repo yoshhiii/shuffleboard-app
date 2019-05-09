@@ -1,4 +1,19 @@
-<ion-fab vertical="bottom" horizontal="center">
+<ion-list class="mt-3">
+  <ion-item href="#" detail *ngFor="let i = index; let team of teams | async">
+    <ion-avatar slot="start">
+      <img src="../../../../assets/smile.png">
+    </ion-avatar>
+    <ion-label>
+      <h1>{{ team.name }}</h1>
+      <p>Best Rank: ____ in _____ ruleset.</p>
+      <p>Wins: ____ Losses: ____</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+
+
+<ion-fab class="mr-3" vertical="bottom" horizontal="end">
   <ion-fab-button>
     <ion-icon (click)="openModal()" name="md-add"></ion-icon>
   </ion-fab-button>
