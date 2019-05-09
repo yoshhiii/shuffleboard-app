@@ -44,8 +44,6 @@ export class MatchTab implements OnInit {
 
     this.matchService.getMatchesByTeam(selectedTeam.id).subscribe(matches => {
       this.matches = matches;
-
-      console.log(this.matches);
     });
   }
 
@@ -101,6 +99,17 @@ export class MatchTab implements OnInit {
     const modal = await this.modalController.create({
       component: ManagematchesPage,
     });
+
+    modal.onDidDismiss()
+      .then(data => {
+        const selectedTeam = this.teams.find(x => x.name === this.selectedTeamName);
+
+        this.matchService.getMatchesByTeam(selectedTeam.id).subscribe(matches => {
+          this.matches = matches;
+
+          console.log(this.matches);
+        });
+      });
     return await modal.present();
   }
 
