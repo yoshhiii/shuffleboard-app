@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TeamCreateComponent } from '../team-create/team-create.component';
-import { OverlayEventDetail } from '@ionic/core';
+import { TeamService } from '../../../shared/team.service';
+import { TeamModel } from 'src/app/shared/models/team.model';
 
 @Component({
   selector: 'app-team-list',
@@ -10,9 +11,13 @@ import { OverlayEventDetail } from '@ionic/core';
 })
 export class TeamListComponent implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  teams: TeamModel[];
+  constructor(public modalController: ModalController,
+    private teamService: TeamService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.teamService.getTeams().subscribe(x => this.teams = x);
+  }
 
   async openModal() {
     const modal = await this.modalController.create({

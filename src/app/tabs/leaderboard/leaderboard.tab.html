@@ -14,12 +14,12 @@
     <div class="d-flex justify-content-around">
       <div class="text-left">
         <h4>Rank</h4>
-        <b>{{ getMyBestTeam(1).rank }}</b>
+        <b>{{ getMyBestTeam().rank }}</b>
       </div>
-      <h2>{{ getMyBestTeam(1).team.team.name }}</h2>
+      <h2>{{ getMyBestTeam().team.team.name }}</h2>
       <div class="text-right">
         <h4>ELO</h4>
-        <b>{{ getMyBestTeam(1).team.ranking.elo }}</b>
+        <b>{{ getMyBestTeam().team.ranking.elo }}</b>
       </div>
     </div>
   </div>
@@ -34,8 +34,8 @@
     </div>
   </div>
   <ion-list>
-    <ion-card (click)="expand(teamRank)" *ngFor="let i = index; let teamRank of teamRankings">
-      <ion-item>
+    <ion-card *ngFor="let i = index; let teamRank of teamRankings">
+      <ion-item (click)="expand(teamRank)">
         <span slot="start"
           ><b>{{ i + 1 }}.</b></span
         >
