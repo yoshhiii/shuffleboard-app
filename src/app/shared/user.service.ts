@@ -19,8 +19,8 @@ export class UserService {
     return this.http.get<UserModel[]>(`${environment.apiUrl}/users`);
   }
 
-  createUser(user: UserModel) {
-    return this.http.post<UserModel[]>(`${environment.apiUrl}/users`, user);
+  createUser(user: UserModel): Observable<UserModel> {
+    return this.http.post<UserModel>(`${environment.apiUrl}/users`, user);
   }
 
   updateUser(user: UserModel) {

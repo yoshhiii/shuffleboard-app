@@ -5,6 +5,8 @@ import { AuthService } from '../shared/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
 import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
+import { UserService } from '../shared/user.service';
+import { UserModel } from '../shared/models/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -17,12 +19,11 @@ export class ProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    private userService: UserService) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
-        this.model.email = user.email;
-        this.model.name = user.displayName;
         localStorage.setItem('user', JSON.stringify(this.user));
       } else {
         localStorage.setItem('user', null);
@@ -35,7 +36,14 @@ export class ProfileComponent implements OnInit {
 
   async createUser() {
     await this.authService.createUser(this.model.email, this.model.password, this.model.name);
-    // await this.firebaseService.addUser(this.model, JSON.parse(localStorage.getItem('user')).uid);
+    await this.user.reload();
+    const user2: UserModel = {
+      id: 1,
+      name: this.user.displayName,
+      email: this.model.email,
+      authId: JSON.parse(localStorage.getItem('user')).uid
+    };
+    await this.userService.createUser(user2).subscribe(x => localStorage.setItem('userId', x.id.toString()));
     this.router.navigate(['/tabs/score']);
   }
 

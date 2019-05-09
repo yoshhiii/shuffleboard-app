@@ -20,6 +20,7 @@ import { SigninPageModule } from './signin/signin.module';
 import { ManagematchesPageModule } from './managematches/managematches.module';
 import { AuthService } from './shared/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UserService } from './shared/user.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -35,10 +36,12 @@ import { HttpClientModule } from '@angular/common/http';
     IconsModule,
     SigninPageModule,
     ManagematchesPageModule,
-    HttpClientModule],
+    HttpClientModule,
+    ManagematchesPageModule],
   providers: [
     StatusBar,
     AuthService,
+    UserService,
     AngularFireAuth,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
