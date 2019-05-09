@@ -20,6 +20,8 @@ export class MatchTab implements OnInit {
   teams: TeamModel[];
   selectedTeamName: string;
 
+  selectedTeam: TeamModel;
+
   slideOpts = {
     initialSlide: 0,
     speed: 400
@@ -40,10 +42,13 @@ export class MatchTab implements OnInit {
   }
 
   UpdateSelectedMatches() {
-    const selectedTeam = this.teams.find(x => x.name === this.selectedTeamName);
+    this.selectedTeam = this.teams.find(x => x.name === this.selectedTeamName);
 
-    this.matchService.getMatchesByTeam(selectedTeam.id).subscribe(matches => {
+    console.log(this.selectedTeam);
+
+    this.matchService.getMatchesByTeam(this.selectedTeam.id).subscribe(matches => {
       this.matches = matches;
+      console.log(this.matches);
     });
   }
 
@@ -102,13 +107,15 @@ export class MatchTab implements OnInit {
 
     modal.onDidDismiss()
       .then(data => {
-        const selectedTeam = this.teams.find(x => x.name === this.selectedTeamName);
-
-        this.matchService.getMatchesByTeam(selectedTeam.id).subscribe(matches => {
-          this.matches = matches;
-
-          console.log(this.matches);
-        });
+        if (this.selectedTeam != null) {
+          this.matchService.getMatchesByTeam(this.selectedTeam.id).subscribe(matches => {
+            this.matches = matches;
+          });
+        } else {
+          this.matchService.getMatchesByTeam(this.teams[0].id).subscribe(matches => {
+            this.matches = matches;
+          });
+        }
       });
     return await modal.present();
   }
