@@ -21,7 +21,9 @@
 
   <ion-slides class="match-slides" pager="true" [options]="slideOpts">
     <ion-slide *ngFor="let i = index; let match of matches | async">
-      <p>{{ match.team1 }} has a match against {{ match.team2 }} on {{ match.date }} playing by {{ match.rules }} rules.</p>
+      <ion-card class="d-flex flex-column justify-content-center match-card">
+      <span class="match-card-text">{{ match.team1 }} has a match against {{ match.team2 }} on {{ match.date }} playing by {{ match.rules }} rules.</span>
+      </ion-card>
     </ion-slide>
   </ion-slides>
   <ion-grid>
