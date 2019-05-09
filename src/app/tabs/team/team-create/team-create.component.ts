@@ -4,6 +4,8 @@ import { UserModel } from 'src/app/shared/models/user.model';
 import { UserService } from '../../../shared/user.service';
 import { TeamModel } from 'src/app/shared/models/team.model';
 import { TeamService } from 'src/app/shared/team.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-team-create',
@@ -22,34 +24,35 @@ export class TeamCreateComponent implements OnInit {
 
   constructor(private modalController: ModalController,
     private userService: UserService,
-    private teamService: TeamService) { }
+    private teamService: TeamService,
+    private router: Router) { }
 
   ngOnInit() {
-      this.userService.getUsers().subscribe(x => {
-        this.users = x;
-        const userId = parseInt(localStorage.getItem('userId'));
-        this.userService.getUser(userId).subscribe(x => {
+    this.userService.getUsers().subscribe(x => {
+      this.users = x;
+      const userId = parseInt(localStorage.getItem('userId'));
+      this.userService.getUser(userId).subscribe(x => {
         this.currentUser = x;
         this.users.splice(this.users.findIndex(x => x.id === userId), 1);
       });
-    }); 
+    });
   }
   grabTeammate(event) {
     const teammateName = event.detail.value;
     this.teammate = this.users.find(x => x.name === teammateName);
   }
-  
+
 
   createTeam() {
     if (this.teammate != undefined && this.name != undefined) {
       this.teamFinal.name = this.name;
       this.teamFinal.users.push(this.teammate);
       this.teamFinal.users.push(this.currentUser);
-      console.log(this.teamFinal)
-      this.teamService.createTeam(this.teamFinal);
+      this.teamService.createTeam(this.teamFinal).subscribe();
+      this.myDismiss();
     }
   }
-    
+
   async myDismiss() {
     await this.modalController.dismiss(null);
   }

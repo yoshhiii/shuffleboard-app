@@ -30,21 +30,24 @@ export class ManagematchesPage implements OnInit {
               private modalController: ModalController) { }
 
   ngOnInit(): void {
-    this.teamService.getTeams().subscribe(teams => {
-      this.oppositionTeams = teams;
-      this.challengerTeams = teams;
+    this.teamService.getTeams(localStorage.getItem('userId')).subscribe(chaTeams => {
+      this.challengerTeams = chaTeams;
+    });
+
+    this.teamService.getTeams().subscribe(oppTeams => {
+      this.oppositionTeams = oppTeams;
     });
 
     this.rulesetsService.getRulesets().subscribe(rules => {
       this.rulesets = rules;
     });
   }
-  async myDismiss() {
 
+  async myDismiss() {
     await this.modalController.dismiss(null);
   }
 
-  CreateMatch() {
+  async CreateMatch() {
     const oppTeam = this.oppositionTeams.find(x => x.name === this.oppTeamName);
     const chaTeam = this.challengerTeams.find(x => x.name === this.chaTeamName);
     const selectedRules = this.rulesets.find(x => x.name === this.selectedRulesetName);
@@ -58,9 +61,13 @@ export class ManagematchesPage implements OnInit {
       Id: null,
       oppositionScore: null,
       challengerScore: null,
-      ruleset: selectedRules
+      rulesetId: selectedRules.id
     };
 
-    this.matchService.createMatch(match);
+    console.log(match);
+
+    this.matchService.createMatch(match).subscribe();
+
+    await this.modalController.dismiss(null);
   }
 }

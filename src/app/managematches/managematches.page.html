@@ -22,14 +22,14 @@
           <ion-card-content>
             <ion-item lines="full" class="mb-3">
               <ion-label>Pick your team...</ion-label>
-              <ion-select interface="action-sheet">
-                <ion-select-option *ngFor="let i = index; let team of teams | async">{{ team.name }}</ion-select-option>
+              <ion-select interface="action-sheet" [(ngModel)]="chaTeamName">
+                <ion-select-option *ngFor="let team of challengerTeams">{{ team.name }}</ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item class="mb-3">
               <ion-label>Pick an opponent</ion-label>
-              <ion-select interface="action-sheet">
-                <ion-select-option *ngFor="let i = index; let team of teams | async">{{ team.name }}</ion-select-option>
+              <ion-select interface="action-sheet" [(ngModel)]="oppTeamName">
+                <ion-select-option *ngFor="let team of oppositionTeams">{{ team.name }}</ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item class="mb-3">
@@ -39,12 +39,11 @@
             </ion-item>
             <ion-item class="" style="margin-bottom: 25%">
               <ion-label>Ruleset</ion-label>
-              <ion-select interface="action-sheet">
-                <ion-select-option>Scrumbledore</ion-select-option>
-                <ion-select-option>Classic</ion-select-option>
+              <ion-select interface="action-sheet" [(ngModel)]="selectedRulesetName">
+                <ion-select-option *ngFor="let ruleset of rulesets">{{ ruleset.name }}</ion-select-option>
               </ion-select>
             </ion-item>
-            <ion-button class="challenge-button" expand="full" fill="outline">Challenge!</ion-button>
+            <ion-button class="challenge-button" expand="full" fill="outline" (click)="CreateMatch()">Challenge!</ion-button>
           </ion-card-content>
         </ion-card>
   </div>
