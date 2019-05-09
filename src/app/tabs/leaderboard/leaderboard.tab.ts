@@ -13,7 +13,7 @@ import { TeamModel } from 'src/app/shared/models/team.model';
 })
 export class LeaderboardTab implements OnInit {
   teamRankings: {team: TeamModel, ranking: TeamRecordModel}[];
-  myBestTeam: TeamModel;
+  myBestTeam: {team: {team: TeamModel, ranking: TeamRecordModel}, rank: number};
   myRank: number;
   userId = Number.parseInt(localStorage.getItem('userId'));
   constructor(private leaderboardService: LeaderboardService, private teamsService: TeamService) {}
@@ -25,21 +25,24 @@ export class LeaderboardTab implements OnInit {
           const ranking = rankings.find(x => x.teamId === team.id);
           return{team, ranking};
         }).sort((a, b) => {
-          return a.ranking.elo >= b.ranking.elo ? 1 : 0;
+          return b.ranking.elo - a.ranking.elo;
         });
       }
-    })).subscribe(x => this.teamRankings = x.filter(team => team.team.users.find(u => u.id === this.userId) === undefined));
+    })).subscribe(x => {
+      this.teamRankings = x;
+      const teamRank = this.teamRankings.find(x => x.team.users.find(u => u.id === this.userId) !== undefined);
+      this.myBestTeam = {
+      team: teamRank,
+      rank: this.teamRankings.indexOf(teamRank) + 1
+      };
+    });
+  }
+
+  checkMyTeams(i: number) {
+    return (this.teamRankings[i].team.users.find(x => x.id === this.userId) === undefined);
   }
 
   expand(team: any) {
     team['expanded'] = !team['expanded'];
-  }
-
-  getMyBestTeam(): {team: {team: TeamModel, ranking: TeamRecordModel}, rank: number} {
-      const teamRank = this.teamRankings.find(x => x.team.users.find(u => u.id === this.userId) !== undefined);
-      return {
-      team: teamRank,
-      rank: this.teamRankings.indexOf(teamRank) + 1
-    };
   }
 }
