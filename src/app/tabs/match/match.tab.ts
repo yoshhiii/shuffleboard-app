@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from 'src/app/shared/firebase.service';
 
 @Component({
   selector: 'app-match-tab',
@@ -15,10 +14,10 @@ export class MatchTab implements OnInit {
     initialSlide: 0,
     speed: 400
   };
-  constructor(private db: FirebaseService) {}
+  constructor() { }
 
   ngOnInit(): void {
-    this.teams = this.db.getTeams();
-    this.matches = this.db.getMatches();
+    // this.teams = this.db.getTeams();
+    // this.matches = this.db.getMatches();
   }
 }

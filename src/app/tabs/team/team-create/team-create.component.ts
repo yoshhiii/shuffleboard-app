@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { FirebaseService } from 'src/app/shared/firebase.service';
-import { User } from 'src/app/shared/models/user.model';
-import { stringify } from '@angular/compiler/src/util';
-import { Team } from 'src/app/shared/models/team.model';
+import { UserModel } from 'src/app/shared/models/user.model';
+import { TeamModel } from 'src/app/shared/models/team.model';
 
 @Component({
   selector: 'app-team-create',
@@ -11,31 +9,30 @@ import { Team } from 'src/app/shared/models/team.model';
   styleUrls: ['./team-create.component.scss'],
 })
 export class TeamCreateComponent implements OnInit {
-  users: User[];
+  users: UserModel[];
   name: string;
 
-  constructor(private modalController: ModalController,
-              private firebaseService: FirebaseService) { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {
-    this.firebaseService.getUsers().subscribe(data => {
-      this.users = data;
-    });
+    // this.firebaseService.getUsers().subscribe(data => {
+    //   this.users = data;
+    // });
   }
 
   async myDismiss() {
-    const team: Team = {
-      name: this.name,
-      users: []
-    };
+    // const team: TeamModel = {
+    //   name: this.name,
+    //   users: []
+    // };
 
-    this.users.forEach(user => {
-      if (user.isChecked) {
-        team.users.push(user.id);
-      }
-    });
-    console.log(team);
-    this.firebaseService.addTeam(team);
+    // this.users.forEach(user => {
+    //   if (user.isChecked) {
+    //     team.users.push(user.id);
+    //   }
+    // });
+    // console.log(team);
+    // this.firebaseService.addTeam(team);
 
     await this.modalController.dismiss(null);
   }
