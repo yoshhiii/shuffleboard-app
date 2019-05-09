@@ -44,6 +44,8 @@ export class ManagematchesPage implements OnInit {
     const selectedRules = this.rulesets.find(x => x.name === this.selectedRulesetName);
 
     const match: MatchModel = {
+      challengerName: null,
+      oppositionName: null,
       challengerId: oppTeam.id,
       oppositionId: chaTeam.id,
       matchDate: this.matchDate,
