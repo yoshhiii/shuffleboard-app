@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
     await this.user.reload();
     const user2: UserModel = {
       id: 1,
-      name: this.user.displayName,
+      name: this.model.name,
       email: this.model.email,
       authId: JSON.parse(localStorage.getItem('user')).uid
     };
