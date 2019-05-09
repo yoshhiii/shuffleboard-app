@@ -2,13 +2,14 @@
   <ion-toolbar color="primary">
     <ion-title>
       Leaderboards
+      <ion-icon name="person" class="profile-icon" routerLink="/profile"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div>
-    <ion-item lines="full">
+    <ion-item lines="full" slot="fixed">
       <ion-label>Ruleset</ion-label>
           <ion-select interface="action-sheet" [(ngModel)]="ruleset" placeholder="Choose a ruleset" (ionChange)="changeRuleset($event)">
               <ion-select-option *ngFor="let rule of rulesets" [value]="rule.id">{{rule.name}}</ion-select-option>
@@ -48,20 +49,16 @@
           ><b>{{ i + 1 }}.</b></span
         >
         <span class="mr-2">{{ teamRank.team.name }}</span>
-        <ion-avatar class="mr-2" *ngFor="let user of teamRank.team.users">
+        <!-- <ion-avatar class="mr-2" *ngFor="let user of teamRank.team.users">
           <img
             src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
           />
-        </ion-avatar>
+        </ion-avatar> -->
         <span slot="end">
           <b>{{ teamRank.ranking.elo }}</b>
-          <ion-icon *ngIf="checkMyTeams(i)" class="ml-3" name="arrow-dropdown"></ion-icon> 
         </span>
 
       </ion-item>
-      <div *ngIf="teamRank['expanded'] && checkMyTeams(i)" class="d-flex justify-content-end p-2">
-            <ion-button color="danger" *ngIf="checkMyTeams(i)" [routerLink]="['/manage_matches']" [queryParams]="{ myTeam: myBestTeam.team.team.id, challengedTeam: teamRank.team.id }">Challenge</ion-button>
-      </div>
     </ion-card>
   </ion-list>
 </ion-content>

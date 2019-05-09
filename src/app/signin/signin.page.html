@@ -10,7 +10,7 @@
     <ion-card-content>
       <ion-input placeholder="Email" [(ngModel)]="username"></ion-input>
       <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-      <ion-button expand="full" fill="outline" (click)="authService.login(username, password)">Log In</ion-button>
+      <ion-button color="secondary" expand="full" (click)="authService.login(username, password)">Log In</ion-button>
     </ion-card-content>
   </ion-card>
 

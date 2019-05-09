@@ -2,6 +2,7 @@
   <ion-toolbar color="primary">
     <ion-title>
       Matches
+      <ion-icon name="person" class="profile-icon" routerLink="/profile"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -22,7 +23,7 @@
   <ion-slides class="match-slides" pager="true" [options]="slideOpts" (ionSlideDidChange)="SlideChanged($event)">
     <ion-slide *ngFor="let match of matches">
       <ion-card color="secondary" class="d-flex flex-column justify-content-center match-card">
-        <span class="match-card-text">{{ match.challengerName }} has a match against {{ match.oppositionName }} on {{ match.matchDate }} playing by {{ match.rulesetId }} rules.</span>
+        <span class="match-card-text">{{ match.challengerName }} has a match against {{ match.oppositionName }} on {{ match.matchDate | date }} playing by {{ match.rulesetId }} rules.</span>
         <ion-button color="success" (click)="presentAlertPrompt(match.id)">Outcome</ion-button>
       </ion-card>
     </ion-slide>
@@ -38,11 +39,11 @@
         <ion-button color="danger">Cancel</ion-button>
       </ion-col>
     </ion-row>
-    <ion-row class="new-match-row text-center">
-      <ion-col size="12">
-      <ion-button (click)="openModal()" expand="full">New Match</ion-button>
-      </ion-col>
-    </ion-row>
   </ion-grid>
+  <ion-fab class="mr-3" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="openModal()">
+        <ion-icon name="md-add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 </ion-content>
 
