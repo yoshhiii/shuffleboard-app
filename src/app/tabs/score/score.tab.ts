@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ScoresModel } from './models/scores.model';
 import { ScoreboxComponent } from './scorebox/scorebox.component';
+import { MatchService } from 'src/app/shared/match.service';
 
 @Component({
   selector: 'app-score-tab',
@@ -8,35 +9,26 @@ import { ScoreboxComponent } from './scorebox/scorebox.component';
   styleUrls: ['score.tab.scss']
 })
 export class ScoreTab implements OnInit {
-  constructor() { }
-  scores: ScoresModel[];
+  constructor(private matchService: MatchService) { }
+  scores: ScoresModel[] = [];
 
   ngOnInit() {
-    this.scores = [
-      {
-        scores: [
-          { score: 0, team: 'test 1' },
-          { score: 0, team: 'test 2' }
-        ],
-        final: false,
-        schedule: new Date()
-      },
-      {
-        scores: [
-          { score: 4, team: 'test 3', winner: true },
-          { score: 0, team: 'test 4' }
-        ],
-        final: true,
-        schedule: new Date()
-      },
-      {
-        scores: [
-          { score: 15, team: 'ricky biscuits' },
-          { score: 21, team: 'cheese shiners', winner: true }
-        ],
-        final: true,
-        schedule: new Date()
-      }
-    ];
+    this.matchService.getMatches().subscribe(x => {
+      x.map(m => {
+        const score = new ScoresModel();
+        score.scores = [{
+          team: m.challengerId.toString(),
+          score: m.challengerScore,
+          winner: m.challengerScore > m.oppositionScore
+        }, {
+          team: m.oppositionId.toString(),
+          score: m.oppositionScore,
+          winner: m.oppositionScore > m.challengerScore
+        }];
+        score.final = m.challengerScore !== null && m.oppositionScore !== null;
+        score.schedule = m.matchDate,
+        this.scores.push(score);
+      })
+    });
   }
 }
