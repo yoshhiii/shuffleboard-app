@@ -64,8 +64,6 @@ export class ManagematchesPage implements OnInit {
       rulesetId: selectedRules.id
     };
 
-    console.log(match);
-
     this.matchService.createMatch(match).subscribe();
 
     await this.modalController.dismiss(null);

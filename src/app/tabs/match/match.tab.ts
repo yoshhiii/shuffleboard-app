@@ -44,15 +44,12 @@ export class MatchTab implements OnInit {
   UpdateSelectedMatches() {
     this.selectedTeam = this.teams.find(x => x.name === this.selectedTeamName);
 
-    console.log(this.selectedTeam);
-
     this.matchService.getMatchesByTeam(this.selectedTeam.id).subscribe(matches => {
       this.matches = matches;
-      console.log(this.matches);
     });
   }
 
-  async presentAlertPrompt() {
+  async presentAlertPrompt(matchId: number) {
     const alert = await this.alertController.create({
       header: 'Enter Results:',
       inputs: [
@@ -88,7 +85,7 @@ export class MatchTab implements OnInit {
             results.ChallengerScore = data.chaScore;
             results.OppositionScore = data.oppScore;
 
-            this.matchService.completeMatch(1, results);
+            this.matchService.completeMatch(matchId, results).subscribe();
           }
         }
       ]
@@ -100,6 +97,7 @@ export class MatchTab implements OnInit {
   SlideChanged($event) {
     console.log($event);
   }
+
   async openModal() {
     const modal = await this.modalController.create({
       component: ManagematchesPage,

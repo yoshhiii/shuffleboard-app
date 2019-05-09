@@ -30,7 +30,7 @@ export class MatchService {
     return this.http.post<MatchModel>(`${environment.apiUrl}/match`, match);
   }
 
-  completeMatch(matchId: number, result: ResultsModel) {
-    return this.http.put(`${environment.apiUrl}/match/${matchId.toString()}`, result);
+  completeMatch(matchId: number, result: ResultsModel): Observable<MatchModel> {
+    return this.http.put<MatchModel>(`${environment.apiUrl}/match/${matchId.toString()}`, result);
   }
 }
