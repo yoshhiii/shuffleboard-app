@@ -1,18 +1,19 @@
 <ion-content>
   <ion-card class="signin">
     <ion-card-header class="signin-center">
-      <app-logo [svgSize]="150"></app-logo>
+      <!-- <app-logo [svgSize]="150"></app-logo>
       <ion-card-title class="signin-title">
         Risky Biscuits
-      </ion-card-title>
+      </ion-card-title> -->
+      <img src="/assets/RiskyBs.png">
     </ion-card-header>
     <ion-card-content>
-      <ion-input placeholder="User Name"></ion-input>
-      <ion-input placeholder="Password"></ion-input>
-      <ion-button expand="full" fill="outline">Log In</ion-button>
+      <ion-input placeholder="Email" [(ngModel)]="username"></ion-input>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+      <ion-button expand="full" fill="outline" (click)="authService.login(username, password)">Log In</ion-button>
     </ion-card-content>
   </ion-card>
 
-    <p class="signin-signup">Don't have an account?</p>
-    <p class="signin-signup">Click <a href="profile">here</a> to get shufflin'.</p>
+  <p class="signin-signup">Don't have an account?</p>
+  <p class="signin-signup">Click <a href="profile">here</a> to get shufflin'.</p>
 </ion-content>

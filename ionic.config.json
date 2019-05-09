@@ -1,5 +1,7 @@
 {
   "name": "ShuffleBoard",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

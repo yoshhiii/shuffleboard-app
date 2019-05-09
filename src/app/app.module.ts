@@ -17,6 +17,9 @@ import { ProfileModule } from './profile/profile.module';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { SigninPageModule } from './signin/signin.module';
+import { ManagematchesPageModule } from './managematches/managematches.module';
+import { AuthService } from './shared/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,9 +32,12 @@ import { SigninPageModule } from './signin/signin.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     IconsModule,
-    SigninPageModule],
+    SigninPageModule,
+    ManagematchesPageModule],
   providers: [
     StatusBar,
+    AuthService,
+    AngularFireAuth,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AngularFirestore

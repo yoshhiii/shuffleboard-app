@@ -42,6 +42,11 @@ const routes: Routes = [
             loadChildren: '../team/team.module#Tab4PageModule'
           }
         ]
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/score',
+        pathMatch: 'full'
       }
     ]
   }
@@ -53,4 +58,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
