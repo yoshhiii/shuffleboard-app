@@ -24,15 +24,7 @@ export class TeamListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const teamsObs = this.teamService.getTeams(this.userId);
-    const rankingsObs = this.leaderboardService.getTeamRecordByRuleset(1);
-
-    forkJoin([teamsObs, rankingsObs])
-      .pipe(map(([t, r]) => {
-        return t.map(e => {
-          return { teamData: e, rankingData: r.filter(rank => rank.teamId === e.id) };
-        });
-      })).subscribe(x => { this.teams2 = x; console.log(this.teams2); });
+    this.getTeams();
   }
 
   async openModal() {
@@ -46,7 +38,16 @@ export class TeamListComponent implements OnInit {
   }
 
   getTeams() {
-    return this.teamService.getTeams(this.userId).subscribe(x => this.teams = x);
+    const teamsObs = this.teamService.getTeams(this.userId);
+    const rankingsObs = this.leaderboardService.getTeamRecordByRuleset(1);
+
+    return forkJoin([teamsObs, rankingsObs])
+      .pipe(map(([t, r]) => {
+        return t.map(e => {
+          return { teamData: e, rankingData: r.filter(rank => rank.teamId === e.id) };
+        });
+      })).subscribe(x => { this.teams2 = x; console.log(this.teams2); });
+    // return this.teamService.getTeams(this.userId).subscribe(x => this.teams = x);
   }
 
 }
