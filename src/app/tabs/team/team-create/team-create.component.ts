@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserModel } from 'src/app/shared/models/user.model';
+import { UserService } from '../../../shared/user.service';
 import { TeamModel } from 'src/app/shared/models/team.model';
+import { TeamService } from 'src/app/shared/team.service';
 
 @Component({
   selector: 'app-team-create',
@@ -11,29 +13,44 @@ import { TeamModel } from 'src/app/shared/models/team.model';
 export class TeamCreateComponent implements OnInit {
   users: UserModel[];
   name: string;
+  teammate: UserModel;
+  currentUser: UserModel;
+  teamFinal: TeamModel = {
+    name: "",
+    users: []
+  };
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController,
+    private userService: UserService,
+    private teamService: TeamService) { }
 
   ngOnInit() {
-    // this.firebaseService.getUsers().subscribe(data => {
-    //   this.users = data;
-    // });
+      this.userService.getUsers().subscribe(x => {
+        this.users = x;
+        const userId = parseInt(localStorage.getItem('userId'));
+        this.userService.getUser(userId).subscribe(x => {
+        this.currentUser = x;
+        this.users.splice(this.users.findIndex(x => x.id === userId), 1);
+      });
+    }); 
   }
+  grabTeammate(event) {
+    const teammateName = event.detail.value;
+    this.teammate = this.users.find(x => x.name === teammateName);
+  }
+  
 
+  createTeam() {
+    if (this.teammate != undefined && this.name != undefined) {
+      this.teamFinal.name = this.name;
+      this.teamFinal.users.push(this.teammate);
+      this.teamFinal.users.push(this.currentUser);
+      console.log(this.teamFinal)
+      this.teamService.createTeam(this.teamFinal);
+    }
+  }
+    
   async myDismiss() {
-    // const team: TeamModel = {
-    //   name: this.name,
-    //   users: []
-    // };
-
-    // this.users.forEach(user => {
-    //   if (user.isChecked) {
-    //     team.users.push(user.id);
-    //   }
-    // });
-    // console.log(team);
-    // this.firebaseService.addTeam(team);
-
     await this.modalController.dismiss(null);
   }
 }

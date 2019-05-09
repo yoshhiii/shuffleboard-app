@@ -22,7 +22,7 @@ export class TeamService {
     return this.http.get<TeamModel>(`${environment.apiUrl}/teams/${teamId}`);
   }
 
-  createTeam(team: TeamModel) {
-    return this.http.post(`${environment.apiUrl}/teams`, team);
+  createTeam(team: TeamModel): Observable<TeamModel> {
+    return this.http.post<TeamModel>(`${environment.apiUrl}/teams`, team);
   }
 }

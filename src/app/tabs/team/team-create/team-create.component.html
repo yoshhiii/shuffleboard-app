@@ -1,28 +1,31 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button (click)="myDismiss()">
-          Close
-        </ion-button>
-        <ion-title style="margin-left: 50px">Create Team</ion-title>
-      </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="myDismiss()">
+        Close
+      </ion-button>
+      <ion-title style="margin-left: 50px">Create Team</ion-title>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
-    <ion-label position="floating">Team Name: </ion-label>
+    <ion-label position="floating">What's your Team Name? : </ion-label>
     <ion-input [(ngModel)]="name"></ion-input>
   </ion-item>
   <div style="height: 100%; overflow: auto;">
     <ion-list>
+      <ion-radio-group>
         <ion-list-header>
-          <ion-label>Select (2) Users</ion-label>
+          <ion-label>Select Your Teammate</ion-label>
         </ion-list-header>
         <ion-item *ngFor="let user of users">
-          <ion-label>{{user.username}}</ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="user.isChecked"></ion-checkbox>
+          <ion-label>{{user.name}}</ion-label>
+          <ion-radio value="{{user.name}}" (ionSelect)="grabTeammate($event)" slot="end"></ion-radio>
         </ion-item>
+      </ion-radio-group>
     </ion-list>
+    <ion-button (click)="createTeam()">Create Team</ion-button>
   </div>
 </ion-content>
