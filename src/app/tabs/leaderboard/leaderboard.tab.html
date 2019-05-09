@@ -14,12 +14,12 @@
     <div class="d-flex justify-content-around">
       <div class="text-left">
         <h4>Rank</h4>
-        <b>{{ myRank }}</b>
+        <b>{{ getMyBestTeam().rank }}</b>
       </div>
-      <h2>{{ myBestTeam?.name }}</h2>
+      <h2>{{ getMyBestTeam().team.team.name }}</h2>
       <div class="text-right">
         <h4>ELO</h4>
-        <b>{{ myBestTeam?.elo }}</b>
+        <b>{{ getMyBestTeam().team.ranking.elo }}</b>
       </div>
     </div>
   </div>
@@ -34,24 +34,27 @@
     </div>
   </div>
   <ion-list>
-    <ion-card (click)="expand(team)" *ngFor="let i = index; let team of teams | async">
-      <ion-item>
+    <ion-card *ngFor="let i = index; let teamRank of teamRankings">
+      <ion-item (click)="expand(teamRank)">
         <span slot="start"
           ><b>{{ i + 1 }}.</b></span
         >
-        <span class="mr-2">{{ team.name }}</span>
-        <ion-avatar class="mr-2" *ngFor="let user of team.users">
+        <span class="mr-2">{{ teamRank.team.name }}</span>
+        <ion-avatar class="mr-2" *ngFor="let user of teamRank.team.users">
           <img
             src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
           />
         </ion-avatar>
         <span slot="end">
-          <b>{{ team.elo }}</b>
+          <b>{{ teamRank.ranking.elo }}</b>
           <ion-icon class="ml-3" name="arrow-dropdown"></ion-icon> 
         </span>
 
       </ion-item>
-      <div *ngIf=""></div>
+      <div *ngIf="teamRank['expanded']">
+        <ion-button>View</ion-button>
+        <ion-button color="danger">Challenge</ion-button>
+      </div>
     </ion-card>
   </ion-list>
 </ion-content>
