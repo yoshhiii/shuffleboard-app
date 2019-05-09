@@ -7,6 +7,14 @@
 </ion-header>
 
 <ion-content>
+  <div>
+    <ion-item lines="full">
+      <ion-label>Ruleset</ion-label>
+          <ion-select interface="action-sheet" [(ngModel)]="ruleset" placeholder="Choose a ruleset" (ionChange)="changeRuleset($event)">
+              <ion-select-option *ngFor="let rule of rulesets" [value]="rule.id">{{rule.name}}</ion-select-option>
+            </ion-select>
+    </ion-item>
+  </div>
   <div class="my-2">
     <div class="d-flex justify-content-center mb-3">
       <h2>Your Best Ranking</h2>
@@ -47,13 +55,12 @@
         </ion-avatar>
         <span slot="end">
           <b>{{ teamRank.ranking.elo }}</b>
-          <ion-icon class="ml-3" name="arrow-dropdown"></ion-icon> 
+          <ion-icon *ngIf="checkMyTeams(i)" class="ml-3" name="arrow-dropdown"></ion-icon> 
         </span>
 
       </ion-item>
-      <div *ngIf="teamRank['expanded']">
-        <ion-button>View</ion-button>
-        <ion-button color="danger" *ngIf="checkMyTeams(i)" [routerLink]="['/manage_matches']" [queryParams]="{ myTeam: myBestTeam.team.team.id, challengedTeam: teamRank.team.id }">Challenge</ion-button>
+      <div *ngIf="teamRank['expanded'] && checkMyTeams(i)" class="d-flex justify-content-end p-2">
+            <ion-button color="danger" *ngIf="checkMyTeams(i)" [routerLink]="['/manage_matches']" [queryParams]="{ myTeam: myBestTeam.team.team.id, challengedTeam: teamRank.team.id }">Challenge</ion-button>
       </div>
     </ion-card>
   </ion-list>
