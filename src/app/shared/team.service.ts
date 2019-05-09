@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { TeamModel } from '../tabs/team/team.model';
+import { TeamModel } from 'src/app/shared/models/team.model';
 import { Observable } from 'rxjs';
 
 @Injectable({

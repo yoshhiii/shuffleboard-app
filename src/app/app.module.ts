@@ -20,6 +20,7 @@ import { SigninPageModule } from './signin/signin.module';
 import { ManagematchesPageModule } from './managematches/managematches.module';
 import { AuthService } from './shared/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
     AngularFireDatabaseModule,
     IconsModule,
     SigninPageModule,
-    ManagematchesPageModule],
+    ManagematchesPageModule,
+    HttpClientModule],
   providers: [
     StatusBar,
     AuthService,
