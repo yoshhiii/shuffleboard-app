@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: 'shufflin-75943.appspot.com',
     messagingSenderId: '485719853836',
     appId: '1:485719853836:web:28c097d71609815d'
-  }
+  },
+  apiUrl: 'localhost:44349/api'
 };
 
 /*
