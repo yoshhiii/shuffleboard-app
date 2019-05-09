@@ -1,13 +1,13 @@
 <ion-content>
 <ion-list class="mt-3">
-  <ion-item href="#" detail *ngFor="let team of teams">
+  <ion-item href="#" detail *ngFor="let team of teams2">
     <ion-avatar slot="start">
-      <img src="../../../../assets/smile.png">
+      <img src="/assets/smile.png">
     </ion-avatar>
     <ion-label>
-      <h1>{{ team.name }}</h1>
-      <p>Best Rank: ____ in _____ ruleset.</p>
-      <p>Wins: ____ Losses: ____</p>
+      <h1>{{team.teamData.name}}</h1>
+      <!-- <p>Best Rank: {{team.rankingData[0]}} in _____ ruleset.</p> -->
+      <p>Wins: {{team.rankingData[0].wins}} Losses: {{team.rankingData[0].losses}}</p>
     </ion-label>
   </ion-item>
 </ion-list>
