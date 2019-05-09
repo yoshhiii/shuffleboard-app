@@ -6,4 +6,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Team</ion-label>
+      <ion-select placeholder="Pick a team...">
+        <ion-select-option
+          *ngFor="let i = index; let team of teams | async"
+          >{{ team.name }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-slides class="match-slides" pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let i = index; let match of matches | async">
+      <p>{{ match.team1 }} has a match against {{ match.team2 }} on {{ match.date }} playing by {{ match.rules }} rules.</p>
+    </ion-slide>
+  </ion-slides>
+  <ion-grid>
+    <ion-row class="text-center">
+      <ion-col size="4">
+        <ion-button color="success">Outcome</ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button color="tertiary">Edit Match</ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button color="danger">Cancel</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="new-match-row text-center">
+      <ion-col size="12">
+      <ion-button href="manage_matches" expand="full" fill="outline">New Match</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

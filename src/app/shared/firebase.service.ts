@@ -61,4 +61,8 @@ export class FirebaseService {
     const ref = this.db.collection<TeamModel>('teams', (ref) => ref.where('users', 'array-contains', userId));
     return ref.valueChanges().pipe(map(x => x.sort((a, b) => a.elo > b.elo ? a.elo : b.elo)));
   }
+
+  getMatches() {
+    return (this.db.collection('matches', ref => ref.orderBy('date', 'asc')).valueChanges());
+  }
 }
