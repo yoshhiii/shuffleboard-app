@@ -5,6 +5,8 @@ import { TeamModel } from 'src/app/shared/models/team.model';
 import { MatchModel } from 'src/app/shared/models/match.model';
 import { ResultsModel } from 'src/app/shared/models/results.model';
 import { AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { ManagematchesPage } from 'src/app/managematches/managematches.page';
 
 @Component({
   selector: 'app-match-tab',
@@ -24,7 +26,8 @@ export class MatchTab implements OnInit {
   };
   constructor(private matchService: MatchService,
               private teamService: TeamService,
-              public alertController: AlertController) { }
+              public alertController: AlertController,
+              private modalController: ModalController) { }
 
   ngOnInit(): void {
     this.teamService.getTeams(localStorage.getItem('userId')).subscribe(yourTeams => {
@@ -94,4 +97,11 @@ export class MatchTab implements OnInit {
   SlideChanged($event) {
     console.log($event);
   }
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: ManagematchesPage,
+    });
+    return await modal.present();
+  }
+
 }

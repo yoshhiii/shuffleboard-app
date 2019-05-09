@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { TeamService } from '../shared/team.service';
 import { TeamModel } from '../shared/models/team.model';
 import { MatchService } from '../shared/match.service';
@@ -25,7 +26,8 @@ export class ManagematchesPage implements OnInit {
   ruleSet: any;
   constructor(private teamService: TeamService,
               private matchService: MatchService,
-              private rulesetsService: RulesetService) { }
+              private rulesetsService: RulesetService,
+              private modalController: ModalController) { }
 
   ngOnInit(): void {
     this.teamService.getTeams().subscribe(teams => {
@@ -36,6 +38,10 @@ export class ManagematchesPage implements OnInit {
     this.rulesetsService.getRulesets().subscribe(rules => {
       this.rulesets = rules;
     });
+  }
+  async myDismiss() {
+
+    await this.modalController.dismiss(null);
   }
 
   CreateMatch() {

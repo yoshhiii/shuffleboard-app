@@ -14,12 +14,12 @@
     <div class="d-flex justify-content-around">
       <div class="text-left">
         <h4>Rank</h4>
-        <b>{{ getMyBestTeam().rank }}</b>
+        <b>{{ myBestTeam?.rank }}</b>
       </div>
-      <h2>{{ getMyBestTeam().team.team.name }}</h2>
+      <h2>{{ myBestTeam?.team?.team?.name }}</h2>
       <div class="text-right">
         <h4>ELO</h4>
-        <b>{{ getMyBestTeam().team.ranking.elo }}</b>
+        <b>{{ myBestTeam?.team?.ranking?.elo }}</b>
       </div>
     </div>
   </div>
@@ -53,7 +53,7 @@
       </ion-item>
       <div *ngIf="teamRank['expanded']">
         <ion-button>View</ion-button>
-        <ion-button color="danger">Challenge</ion-button>
+        <ion-button color="danger" *ngIf="checkMyTeams(i)" [routerLink]="['/manage_matches']" [queryParams]="{ myTeam: myBestTeam.team.team.id, challengedTeam: teamRank.team.id }">Challenge</ion-button>
       </div>
     </ion-card>
   </ion-list>
