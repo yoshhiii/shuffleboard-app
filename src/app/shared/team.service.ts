@@ -25,4 +25,8 @@ export class TeamService {
   createTeam(team: TeamModel): Observable<TeamModel> {
     return this.http.post<TeamModel>(`${environment.apiUrl}/teams`, team);
   }
+
+  deleteTeam(teamId: number): Observable<TeamModel> {
+    return this.http.delete<TeamModel>(`${environment.apiUrl}/teams/${teamId}`)
+  }
 }
