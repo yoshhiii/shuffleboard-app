@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { LogoIconComponent } from './logo/logo.component';
 import { ScoreboardIconComponent } from './scoreboard/scoreboard.component';
 import { LeaderboardIconComponent } from './leaderboard/leaderboard.component';
+import { PuckIconComponent } from './puck/puck.component';
 
 @NgModule({
   declarations: [
     LogoIconComponent,
     ScoreboardIconComponent,
-    LeaderboardIconComponent
+    LeaderboardIconComponent,
+    PuckIconComponent
   ],
   imports: [
     CommonModule
@@ -16,7 +18,8 @@ import { LeaderboardIconComponent } from './leaderboard/leaderboard.component';
   exports: [
     LogoIconComponent,
     ScoreboardIconComponent,
-    LeaderboardIconComponent
+    LeaderboardIconComponent,
+    PuckIconComponent
   ]
 })
 export class IconsModule { }
