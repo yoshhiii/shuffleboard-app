@@ -12,8 +12,9 @@ export class ScoreTab implements OnInit {
   constructor(private matchService: MatchService) { }
   scores: ScoresModel[] = [];
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.matchService.getMatches().subscribe(x => {
+      this.scores = [];
       x.map(m => {
         const score = new ScoresModel();
         score.scores = [{
