@@ -12,10 +12,7 @@
     <ion-item>
       <ion-label>Team</ion-label>
       <ion-select placeholder="Pick a team..." [(ngModel)]="selectedTeamName" (ionChange)="UpdateSelectedMatches()">
-        <ion-select-option
-          *ngFor="let team of teams"
-          >{{ team.name }}</ion-select-option
-        >
+        <ion-select-option *ngFor="let team of teams">{{ team.name }}</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -23,27 +20,30 @@
   <ion-slides class="match-slides" pager="true" [options]="slideOpts" (ionSlideDidChange)="SlideChanged($event)">
     <ion-slide *ngFor="let match of matches">
       <ion-card color="secondary" class="d-flex flex-column justify-content-center match-card">
-        <span class="match-card-text">{{ match.challengerName }} has a match against {{ match.oppositionName }} on {{ match.matchDate | date }} playing by {{ match.rulesetId }} rules.</span>
-        <ion-button color="success" (click)="presentAlertPrompt(match.id)">Outcome</ion-button>
+        <span class="match-card-text">{{ match.challengerName }} has a match against {{ match.oppositionName }} on
+          {{ match.matchDate | date }} playing by {{ match.rulesetId }} rules.</span>
+        <div>
+          <ion-button (click)="presentAlertPrompt(match.id)" class="mt-5">Outcome
+          </ion-button>
+        </div>
       </ion-card>
     </ion-slide>
   </ion-slides>
   <ion-grid>
     <ion-row class="text-center">
-      <ion-col size="4">
+      <!-- <ion-col size="8">
+      </ion-col> -->
+      <ion-col size="6">
+        <ion-button color="medium" style="width: 80%">Edit Match</ion-button>
       </ion-col>
-      <ion-col size="4">
-        <ion-button color="secondary">Edit Match</ion-button>
-      </ion-col>
-      <ion-col size="4">
-        <ion-button color="danger">Cancel</ion-button>
+      <ion-col size="6">
+        <ion-button color="danger" style="width: 80%">Cancel</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-fab class="mr-3" vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="openModal()">
-        <ion-icon name="md-add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+    <ion-fab-button (click)="openModal()">
+      <ion-icon name="md-add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
-
