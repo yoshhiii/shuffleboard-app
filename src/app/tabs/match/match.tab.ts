@@ -24,7 +24,7 @@ export class MatchTab implements OnInit {
 
   slideOpts = {
     initialSlide: 0,
-    speed: 400
+    speed: 400,
   };
   constructor(private matchService: MatchService,
               private teamService: TeamService,

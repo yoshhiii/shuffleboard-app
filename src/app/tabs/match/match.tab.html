@@ -23,9 +23,13 @@
 
   <ion-slides class="match-slides" pager="true" [options]="slideOpts" (ionSlideDidChange)="SlideChanged($event)">
     <ion-slide *ngFor="let match of matches">
-      <ion-card color="secondary" class="d-flex flex-column justify-content-center match-card">
-        <p class="match-card-text">{{ match.challengerName }} has a match against {{ match.oppositionName }} on
-          {{ match.matchDate | date }} playing by {{ match.rulesetId }} rules.</p>
+      <ion-card color="secondary" class="match-card">
+        <div class="justify-content-between container-card">
+          <span class="card-font">{{ match.challengerName }}</span>
+          <span class="card-font">{{ match.oppositionName }}</span>
+        </div>
+        <p class="verse-font">Verse</p>
+        <p>{{ match.matchDate | date }}</p>
         <div>
           <ion-button (click)="presentAlertPrompt(match.id)" class="mt-3">Outcome
           </ion-button>
@@ -45,9 +49,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-fab class="mr-3" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="openModal()">
-      <ion-icon name="md-add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <div class="create-button justify-content-center">
+      <ion-button style="width: 85%;"(click)="openModal()">Create New Match</ion-button>
+  </div>
 </ion-content>
