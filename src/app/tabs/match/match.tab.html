@@ -24,10 +24,10 @@
   <ion-slides class="match-slides" pager="true" [options]="slideOpts" (ionSlideDidChange)="SlideChanged($event)">
     <ion-slide *ngFor="let match of matches">
       <ion-card color="secondary" class="d-flex flex-column justify-content-center match-card">
-        <span class="match-card-text">{{ match.challengerName }} has a match against {{ match.oppositionName }} on
-          {{ match.matchDate | date }} playing by {{ match.rulesetId }} rules.</span>
+        <p class="match-card-text">{{ match.challengerName }} has a match against {{ match.oppositionName }} on
+          {{ match.matchDate | date }} playing by {{ match.rulesetId }} rules.</p>
         <div>
-          <ion-button (click)="presentAlertPrompt(match.id)" class="mt-5">Outcome
+          <ion-button (click)="presentAlertPrompt(match.id)" class="mt-3">Outcome
           </ion-button>
         </div>
       </ion-card>
