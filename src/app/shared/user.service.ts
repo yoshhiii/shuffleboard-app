@@ -15,6 +15,10 @@ export class UserService {
     return this.http.get<UserModel>(`${environment.apiUrl}/users/${userId.toString()}`);
   }
 
+  getUserByUsername(username: string): Observable<UserModel> {
+    return this.http.get<UserModel>(`${environment.apiUrl}/users/username/${username}`);
+  }
+
   getUsers(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(`${environment.apiUrl}/users`);
   }

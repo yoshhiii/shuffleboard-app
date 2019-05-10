@@ -10,13 +10,13 @@ import { ToastController, Platform } from '@ionic/angular';
   templateUrl: 'score.tab.html',
   styleUrls: ['score.tab.scss']
 })
-export class ScoreTab implements OnInit {
+export class ScoreTab {
   constructor(private matchService: MatchService) { }
   scores: ScoresModel[] = [];
 
-  ngOnInit() {
-    
+  ionViewWillEnter() {
     this.matchService.getMatches().subscribe(x => {
+      this.scores = [];
       x.map(m => {
         const score = new ScoresModel();
         score.scores = [{
