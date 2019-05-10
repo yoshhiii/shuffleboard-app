@@ -8,7 +8,7 @@ import { MatchService } from 'src/app/shared/match.service';
   templateUrl: 'score.tab.html',
   styleUrls: ['score.tab.scss']
 })
-export class ScoreTab implements OnInit {
+export class ScoreTab {
   constructor(private matchService: MatchService) { }
   scores: ScoresModel[] = [];
 
