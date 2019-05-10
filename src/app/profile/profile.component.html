@@ -1,18 +1,26 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Profile
-      <ion-icon name="person" class="profile-icon" routerLink="/profile"></ion-icon>
     </ion-title>
+    <!-- <ion-buttons slot="primary">
+      <ion-button routerLink="/profile">
+        <ion-icon slot="icon-only" name="contact"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card class="welcome-card">
-    <ion-img src="/assets/shapes.svg"></ion-img>
+    <!-- <ion-img src="/assets/shapes.svg"></ion-img> -->
+    <div class="d-flex justify-content-center mt-3">
+      <ion-icon slot="icon-only" name="contact" style="font-size: 120px"></ion-icon>
+    </div>
+
     <ion-card-header>
       <ion-card-title *ngIf="!user">Create Account</ion-card-title>
     </ion-card-header>

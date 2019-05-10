@@ -2,8 +2,12 @@
   <ion-toolbar color="primary">
     <ion-title>
       Leaderboards
-      <ion-icon name="person" class="profile-icon" routerLink="/profile"></ion-icon>
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/profile">
+        <ion-icon slot="icon-only" name="contact"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -11,9 +15,10 @@
   <div>
     <ion-item lines="full" slot="fixed">
       <ion-label>Ruleset</ion-label>
-          <ion-select interface="action-sheet" [(ngModel)]="ruleset" placeholder="Choose a ruleset" (ionChange)="changeRuleset($event)">
-              <ion-select-option *ngFor="let rule of rulesets" [value]="rule.id">{{rule.name}}</ion-select-option>
-            </ion-select>
+      <ion-select interface="action-sheet" [(ngModel)]="ruleset" placeholder="Choose a ruleset"
+        (ionChange)="changeRuleset($event)">
+        <ion-select-option *ngFor="let rule of rulesets" [value]="rule.id">{{rule.name}}</ion-select-option>
+      </ion-select>
     </ion-item>
   </div>
   <div class="my-2">
@@ -45,9 +50,7 @@
   <ion-list>
     <ion-card *ngFor="let i = index; let teamRank of teamRankings">
       <ion-item (click)="expand(teamRank)">
-        <span slot="start"
-          ><b>{{ i + 1 }}.</b></span
-        >
+        <span slot="start"><b>{{ i + 1 }}.</b></span>
         <span class="mr-2">{{ teamRank.team.name }}</span>
         <!-- <ion-avatar class="mr-2" *ngFor="let user of teamRank.team.users">
           <img
