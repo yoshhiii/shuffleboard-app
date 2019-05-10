@@ -1,5 +1,6 @@
 .match-slides {
     height: 65%;
+    width: 95%;
 }
 
 .new-match-row {
@@ -12,4 +13,27 @@
 
 .match-card-text {
     padding: 10px;
+}
+
+.container-card {
+    display: flex;
+    margin-top: 25px;
+}
+
+.card-font {
+    font-size: 18px;
+    font-weight: 800;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.verse-font {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 25px;
+}
+
+.create-button {
+    display: flex;
+    width: 100%;
 }

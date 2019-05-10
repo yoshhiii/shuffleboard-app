@@ -23,17 +23,19 @@ export class TeamCreateComponent implements OnInit {
   };
 
   constructor(private modalController: ModalController,
-    private userService: UserService,
-    private teamService: TeamService,
-    private router: Router) { }
+              private userService: UserService,
+              private teamService: TeamService,
+              private router: Router) { }
 
   ngOnInit() {
     this.userService.getUsers().subscribe(x => {
       this.users = x;
       const userId = parseInt(localStorage.getItem('userId'));
-      this.userService.getUser(userId).subscribe(x => {
-        this.currentUser = x;
-        this.users.splice(this.users.findIndex(x => x.id === userId), 1);
+      console.log(userId);
+      this.userService.getUser(userId).subscribe(y => {
+        this.currentUser = y;
+        console.log(this.currentUser);
+        this.users.splice(this.users.findIndex(z => z.id === userId), 1);
       });
     });
   }
@@ -44,11 +46,11 @@ export class TeamCreateComponent implements OnInit {
 
 
   createTeam() {
-    if (this.teammate != undefined && this.name != undefined) {
+    if (this.teammate !== undefined && this.name !== undefined) {
       this.teamFinal.name = this.name;
       this.teamFinal.users.push(this.teammate);
       this.teamFinal.users.push(this.currentUser);
-      this.teamService.createTeam(this.teamFinal).subscribe(x => x, (err) => console.log(err), () => { this.myDismiss() });
+      this.teamService.createTeam(this.teamFinal).subscribe(x => x, (err) => console.log(err), () => { this.myDismiss(); });
       // this.myDismiss();
     }
   }
