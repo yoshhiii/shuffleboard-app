@@ -22,6 +22,7 @@ import { AuthService } from './shared/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserService } from './shared/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Firebase } from '@ionic-native/firebase/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,7 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAuth,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    AngularFirestore
+    AngularFirestore,
+    Firebase
   ],
   bootstrap: [AppComponent]
 })

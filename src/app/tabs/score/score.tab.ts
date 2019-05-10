@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ScoresModel } from './models/scores.model';
 import { ScoreboxComponent } from './scorebox/scorebox.component';
 import { MatchService } from 'src/app/shared/match.service';
+import { FcmService } from 'src/app/shared/fcm.service';
+import { ToastController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-score-tab',
@@ -13,6 +15,7 @@ export class ScoreTab implements OnInit {
   scores: ScoresModel[] = [];
 
   ngOnInit() {
+    
     this.matchService.getMatches().subscribe(x => {
       x.map(m => {
         const score = new ScoresModel();
@@ -31,4 +34,5 @@ export class ScoreTab implements OnInit {
       });
     });
   }
+
 }

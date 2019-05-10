@@ -3,4 +3,5 @@ export interface UserModel {
   email: string;
   name: string;
   authId: string;
+  fcmToken: string;
 }

@@ -7,6 +7,7 @@ import { User } from 'firebase';
 import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 import { UserService } from '../shared/user.service';
 import { UserModel } from '../shared/models/user.model';
+import { FcmService } from '../shared/fcm.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,8 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private afAuth: AngularFireAuth,
-    private userService: UserService) {
+    private userService: UserService,
+    private fcm: FcmService) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
@@ -41,7 +43,8 @@ export class ProfileComponent implements OnInit {
       id: 1,
       name: this.model.name,
       email: this.model.email,
-      authId: JSON.parse(localStorage.getItem('user')).uid
+      authId: JSON.parse(localStorage.getItem('user')).uid,
+      fcmToken: await this.fcm.getToken()
     };
     await this.userService.createUser(user2).subscribe(x => localStorage.setItem('userId', x.id.toString()));
     this.router.navigate(['/tabs/score']);
