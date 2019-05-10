@@ -24,6 +24,9 @@ export class FcmService {
       token = await this.firebase.getToken();
       await this.firebase.grantPermission();
     }
+    if (this.platform.is('desktop')) {
+      token = await this.firebase.getToken();
+    }
 
     return token;
   }
