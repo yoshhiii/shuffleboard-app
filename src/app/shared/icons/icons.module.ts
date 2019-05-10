@@ -4,13 +4,15 @@ import { LogoIconComponent } from './logo/logo.component';
 import { ScoreboardIconComponent } from './scoreboard/scoreboard.component';
 import { LeaderboardIconComponent } from './leaderboard/leaderboard.component';
 import { PuckIconComponent } from './puck/puck.component';
+import { TeamIconComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
     LogoIconComponent,
     ScoreboardIconComponent,
     LeaderboardIconComponent,
-    PuckIconComponent
+    PuckIconComponent,
+    TeamIconComponent
   ],
   imports: [
     CommonModule
@@ -19,7 +21,8 @@ import { PuckIconComponent } from './puck/puck.component';
     LogoIconComponent,
     ScoreboardIconComponent,
     LeaderboardIconComponent,
-    PuckIconComponent
+    PuckIconComponent,
+    TeamIconComponent
   ]
 })
 export class IconsModule { }
